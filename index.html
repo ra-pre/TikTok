@@ -1,97 +1,314 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>接続中...</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffffff;
-            color: #333333;
-        }
-        .container {
-            text-align: center;
-        }
-        .loading-text {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        .percentage {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        .fallback-link {
-            margin-top: 30px;
-            font-size: 14px;
-            display: none; /* 最初は非表示 */
-        }
-        .fallback-link a {
-            color: #06C755; /* LINE風の緑色 */
-            text-decoration: underline;
-        }
-    </style>
-    <!-- TikTok Pixel Code Start -->
-    <script>
-    !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-    var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t{},ttq._t[e]=+new Date,ttq._o=ttq._o{},ttq._o[e]=n||{};n=document.createElement("script")
-    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAPHAEL | 公式LINE</title>
 
+  <!-- TikTok Pixel Code Start -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+  var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+  ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    ttq.load('D6J77VBC77UCTB9KGSH0');
+    ttq.page();
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
 
-      ttq.load('D6J77VBC77UCTB9KGSH0');
-      ttq.page();
-    }(window, document, 'ttq');
-    </script>
-    <!-- TikTok Pixel Code End -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --accent: #c8a96e;
+      --accent-light: #e8d5a3;
+      --gray: #888888;
+      --bg: #111111;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── 背景グラデーション ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,169,110,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(200,169,110,0.10) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 64px;
+    }
+
+    /* ── ロゴ ── */
+    .logo {
+      font-size: clamp(2.4rem, 10vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 50%, #a07840 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+
+    .logo-sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 40px;
+    }
+
+    /* ── ヒーローカード ── */
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,169,110,0.25);
+      border-radius: 20px;
+      padding: 36px 28px 40px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(200,169,110,0.5);
+      border-radius: 100px;
+      padding: 4px 14px;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: clamp(1.3rem, 5vw, 1.7rem);
+      font-weight: 800;
+      line-height: 1.45;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .card-title span {
+      background: linear-gradient(90deg, var(--accent-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: #bbbbbb;
+      margin-bottom: 32px;
+    }
+
+    /* ── LINEボタン ── */
+    .btn-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 17px 24px;
+      background: linear-gradient(135deg, #06C755 0%, #04a845 100%);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(6,199,85,0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn-line:hover, .btn-line:active {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(6,199,85,0.45);
+    }
+
+    .btn-line svg {
+      flex-shrink: 0;
+    }
+
+    /* ── カウントダウン ── */
+    .countdown-wrap {
+      margin-top: 22px;
+      font-size: 0.78rem;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+    }
+
+    .countdown-wrap span {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── フィーチャーリスト ── */
+    .features {
+      width: 100%;
+      max-width: 420px;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(200,169,110,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .feature-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .feature-text p {
+      font-size: 0.76rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── フッター ── */
+    .footer {
+      margin-top: 48px;
+      font-size: 0.68rem;
+      color: #444;
+      text-align: center;
+      letter-spacing: 0.08em;
+    }
+  </style>
 </head>
 <body>
+  <div class="page">
 
-    <div class="container">
-        <div class="loading-text">公式ページへ接続中...</div>
-        <div class="loading-text">システムに接続中...</div>
-        <div class="percentage" id="progress">0%</div>
-        
-        <div class="fallback-link" id="fallback">
-            自動で切り替わらない場合は<a href="https://lin.ee/nLOAa2F" id="manual-link">こちら</a>をタップ
-        </div>
+    <div class="logo">RAPHAEL</div>
+    <div class="logo-sub">Official Community</div>
+
+    <div class="card">
+      <div class="badge">LINE Official</div>
+      <h1 class="card-title">
+        RAPHAELの<span>公式LINE</span>に<br>参加しよう
+      </h1>
+      <p class="card-desc">
+        最新情報・限定コンテンツ・メンバー限定の<br>
+        お知らせをLINEでいち早くお届けします。<br>
+        まずは友だち追加から。
+      </p>
+
+      <a class="btn-line" href="https://lin.ee/TQxDj17" id="lineBtn" onclick="handleClick()">
+        <!-- LINE icon -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.63 5.79 4.14 7.5L5.5 22l3.86-1.93C10.38 20.34 11.18 20.5 12 20.5c5.52 0 10-4.02 10-9S17.52 2 12 2z" fill="white"/>
+          <path d="M17.5 13.5h-2v-4h2v4zm-3.5 0h-2v-4h2v4zm-3.5 0h-2v-4h2v4z" fill="#06C755"/>
+        </svg>
+        友だち追加する（無料）
+      </a>
+
+      <div class="countdown-wrap" id="countdownWrap">
+        <span id="sec">30</span> 秒後に自動で移動します
+      </div>
     </div>
 
-    <script>
-        // 指定された新しいLINEのURL
-        const redirectUrl = "https://lin.ee/nLOAa2F"; 
-        
-        let progressElement = document.getElementById('progress');
-        let fallbackElement = document.getElementById('fallback');
-        let percentage = 0;
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-icon">🔔</div>
+        <div class="feature-text">
+          <strong>最新情報をいち早くお届け</strong>
+          <p>新着コンテンツや重要なお知らせをLINEで直接お届けします。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-text">
+          <strong>メンバー限定コンテンツ</strong>
+          <p>公式LINEだけで受け取れる限定情報をご用意しています。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">💬</div>
+        <div class="feature-text">
+          <strong>直接サポート</strong>
+          <p>ご質問・ご相談はLINEから気軽にどうぞ。</p>
+        </div>
+      </div>
+    </div>
 
-        // 数字をカウントアップさせる処理
-        let interval = setInterval(() => {
-            // 5〜15のランダムな数字を足していく（本物っぽい動きにするため）
-            percentage += Math.floor(Math.random() * 11) + 5; 
-            
-            if (percentage >= 100) {
-                percentage = 100;
-                progressElement.innerText = percentage + "%";
-                clearInterval(interval);
-                
-                // 100%になったら少し待ってから自動的にページを切り替える
-                setTimeout(() => {
-                    window.location.href = redirectUrl;
-                    // 万が一自動で飛ばなかったときのためにリンクを表示する
-                    fallbackElement.style.display = 'block';
-                }, 500); // 0.5秒後に移動
-            } else {
-                progressElement.innerText = percentage + "%";
-            }
-        }, 150); // 0.15秒ごとに数字を更新
-    </script>
+    <div class="footer">
+      &copy; 2025 RAPHAEL. All rights reserved.
+    </div>
+
+  </div>
+
+  <script>
+    const LINE_URL = "https://lin.ee/TQxDj17";
+    let remaining = 30;
+    const secEl = document.getElementById("sec");
+    const wrapEl = document.getElementById("countdownWrap");
+
+    function handleClick() {
+      // TikTokピクセル：ボタンクリックイベント
+      if (window.ttq) {
+        ttq.track('ClickButton', { content_name: 'LINE Add Friend' });
+      }
+    }
+
+    const timer = setInterval(() => {
+      remaining--;
+      if (remaining <= 0) {
+        clearInterval(timer);
+        wrapEl.textContent = "移動中...";
+        window.location.href = LINE_URL;
+      } else {
+        secEl.textContent = remaining;
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
