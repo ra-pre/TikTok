@@ -127,6 +127,19 @@
       margin-bottom: 32px;
     }
 
+    /* ── カウントダウン ── */
+    .timer-container {
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    #timer {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin: 0 4px;
+    }
+
     /* ── LINEボタン ── */
     .btn-line {
       display: flex;
@@ -229,6 +242,10 @@
         まずは友だち追加から。
       </p>
 
+      <div class="timer-container">
+        あと <span id="timer">30</span> 秒で自動的に移動します
+      </div>
+
       <a class="btn-line" href="https://lin.ee/Z1qfJda2" id="lineBtn" onclick="handleClick()">
         <!-- LINE icon -->
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -270,6 +287,20 @@
   </div>
 
   <script>
+    const REDIRECT_URL = "https://lin.ee/Z1qfJda2";
+    let timeLeft = 30;
+    const timerElement = document.getElementById('timer');
+
+    // カウントダウンタイマー
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timerElement.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        window.location.href = REDIRECT_URL;
+      }
+    }, 1000);
+
     function handleClick() {
       // TikTokピクセル：ボタンクリックイベント
       if (window.ttq) {
