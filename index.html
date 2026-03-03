@@ -3,15 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=https://lin.ee/cA9VRKU">
-    <title>LINEへ移動中...</title>
-    <script>
-        // JavaScriptでも転送を実行（より確実にするため）
-        window.location.replace("https://lin.ee/cA9VRKU");
-    </script>
+    <title>接続中...</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            color: #333333;
+        }
+        .container {
+            text-align: center;
+        }
+        .loading-text {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .percentage {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .fallback-link {
+            margin-top: 30px;
+            font-size: 14px;
+            display: none; /* 最初は非表示 */
+        }
+        .fallback-link a {
+            color: #06C755; /* LINE風の緑色 */
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <p>LINE公式アカウントへ移動しています。<br>
-    自動的に切り替わらない場合は<a href="https://lin.ee/cA9VRKU">こちら</a>をクリックしてください。</p>
+
+    <div class="container">
+        <div class="loading-text">公式ページへ接続中...</div>
+        <div class="loading-text">システムに接続中...</div>
+        <div class="percentage" id="progress">0%</div>
+        
+        <div class="fallback-link" id="fallback">
+            自動で切り替わらない場合は<a href="https://lin.ee/zxb8LSm" id="manual-link">こちら</a>をタップ
+        </div>
+    </div>
+
+    <script>
+        // 指定されたLINEのURL
+        const redirectUrl = "https://lin.ee/zxb8LSm"; 
+        
+        let progressElement = document.getElementById('progress');
+        let fallbackElement = document.getElementById('fallback');
+        let percentage = 0;
+
+        // 数字をカウントアップさせる処理
+        let interval = setInterval(() => {
+            // 5〜15のランダムな数字を足していく（本物っぽい動きにするため）
+            percentage += Math.floor(Math.random() * 11) + 5; 
+            
+            if (percentage >= 100) {
+                percentage = 100;
+                progressElement.innerText = percentage + "%";
+                clearInterval(interval);
+                
+                // 100%になったら少し待ってから自動的にページを切り替える
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                    // 万が一自動で飛ばなかったときのためにリンクを表示する
+                    fallbackElement.style.display = 'block';
+                }, 500); // 0.5秒後に移動
+            } else {
+                progressElement.innerText = percentage + "%";
+            }
+        }, 150); // 0.15秒ごとに数字を更新
+    </script>
 </body>
 </html>
