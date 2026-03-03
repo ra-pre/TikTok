@@ -158,19 +158,6 @@
       flex-shrink: 0;
     }
 
-    /* ── カウントダウン ── */
-    .countdown-wrap {
-      margin-top: 22px;
-      font-size: 0.78rem;
-      color: var(--gray);
-      letter-spacing: 0.05em;
-    }
-
-    .countdown-wrap span {
-      color: var(--accent);
-      font-weight: 700;
-    }
-
     /* ── フィーチャーリスト ── */
     .features {
       width: 100%;
@@ -251,10 +238,6 @@
         </svg>
         友だち追加する（無料）
       </a>
-
-      <div class="countdown-wrap" id="countdownWrap">
-        <span id="sec">30</span> 秒後に自動で移動します
-      </div>
     </div>
 
     <div class="features">
@@ -288,28 +271,12 @@
   </div>
 
   <script>
-    const LINE_URL = "https://lin.ee/Z1qfJda2";
-    let remaining = 30;
-    const secEl = document.getElementById("sec");
-    const wrapEl = document.getElementById("countdownWrap");
-
     function handleClick() {
       // TikTokピクセル：ボタンクリックイベント
       if (window.ttq) {
         ttq.track('ClickButton', { content_name: 'LINE Add Friend' });
       }
     }
-
-    const timer = setInterval(() => {
-      remaining--;
-      if (remaining <= 0) {
-        clearInterval(timer);
-        wrapEl.textContent = "移動中...";
-        window.location.href = LINE_URL;
-      } else {
-        secEl.textContent = remaining;
-      }
-    }, 1000);
   </script>
 </body>
 </html>
